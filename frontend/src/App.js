@@ -1,8 +1,9 @@
+import SignUp from './pages/SignUp'
 import './App.css'
 
 const App = () => {
   return (
-    <h1>Holis</h1>
+    <SignUp />
   )
 }
 
