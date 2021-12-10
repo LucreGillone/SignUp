@@ -14,15 +14,25 @@ main {
   background-color: darkgray;
 }
 
-form {
+div.userForm, form {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  height: 30vh;
+  height: 60vh;
+}
+
+div.userForm{
+  
+  border: 2px solid black;
+  padding: 2.5rem;
 }
 
 h2 {
-  color: red;
   font-weight: bold;
+}
+
+button {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
 }

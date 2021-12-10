@@ -24,19 +24,28 @@ const SignUp = (props) => {
 
     return (
         <main>
+            <h1>Welcome {props.name}</h1>
             <h2>Sign Up</h2>
-            <form>
-                <input type="text" onChange={inputHandler} name="name" placeholder="Name" autoComplete="nope"/>
-                <input type="email"  onChange={inputHandler} name="email" placeholder="Email" autoComplete="nope"/>
-                <input type="password" onChange={inputHandler} name="password" placeholder="Password" autoComplete="nope"/>
-            </form>
-            <button onClick={submitForm}>Sign Up</button>
+            <div className="userForm">
+                <form>
+                    <input type="text" onChange={inputHandler} name="name" placeholder="Name" autoComplete="nope"/>
+                    <input type="email"  onChange={inputHandler} name="email" placeholder="Email" autoComplete="nope"/>
+                    <input type="password" onChange={inputHandler} name="password" placeholder="Password" autoComplete="nope"/>
+                </form>
+                <button onClick={submitForm}>Sign Up</button>
+            </div>
         </main>
     )
+}
+
+const mapStateToProps = (state) => {
+    return {
+        name: state.users.name
+    }
 }
 
 const mapDispatchToProps = {
     signUp: userActions.signUp
 }
 
-export default connect (null, mapDispatchToProps)(SignUp)
+export default connect (mapStateToProps, mapDispatchToProps)(SignUp)

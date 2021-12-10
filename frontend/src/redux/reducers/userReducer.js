@@ -1,4 +1,5 @@
 const userReducer = (state = {name: null, _id: null}, action) => {
+    
     switch(action.type) {
         case "LOGGED": 
             return {
