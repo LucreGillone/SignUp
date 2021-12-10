@@ -1,6 +1,7 @@
 import {useState} from "react"
 import {connect} from "react-redux"
 import userActions from "../redux/actions/userActions"
+import GoogleLogin from 'react-google-login'
 
 const SignUp = (props) => {
     const [newUser, setNewUser] = useState ({
@@ -10,12 +11,24 @@ const SignUp = (props) => {
     })
 
     const inputHandler = (e) => {
-        console.log(e.target.value)
         setNewUser({
             ...newUser,
             [e.target.name]: e.target.value
             
         })
+    }
+
+    const responseGoogle = (res) => {
+        console.log(res)
+        let googleUser = {
+            name: res.profileObj.name,
+            email: res.profileObj.email, 
+            password: res.profileObj.googleId,
+            google: true,
+        }
+        props.signUp(googleUser)
+        .then((response) => response.data.success)
+        .catch((error) => console.log(error))
     }
 
     const submitForm = () => {
@@ -33,6 +46,13 @@ const SignUp = (props) => {
                     <input type="password" onChange={inputHandler} name="password" placeholder="Password" autoComplete="nope"/>
                 </form>
                 <button onClick={submitForm}>Sign Up</button>
+                <GoogleLogin
+                    clientId="556133798915-6gmkilf0cascu1bo6br8ule65fms7bek.apps.googleusercontent.com"
+                    buttonText="Sign un with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
             </div>
         </main>
     )
